@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap');
+@font-face {
+  font-family: 'Exo2.0-Thin';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("./fonts/Exo20-Thin.woff2") format('woff2')
+  , url("./fonts/Exo20-Thin.woff") format('woff')
+  , url("./fonts/Exo20-Thin.ttf") format('ttf');
+
+}
+
+:root{
+  --colorPrimary: #1698d9;
+  --colorPrimaryHover: #2ea8e6;
+  --colorSelected:  #d91667;
+  --colorSelectedHover: #e52e7a;
+  --colorDisabled: #b3b3b3;
+
+  --colorBorder: var(--colorPrimary);
+  --colorBorderDisabled: var(--colorDisabled);
+  --colorBorderHover: var(--colorPrimaryHover);
+  --colorBorderSelected: var(--colorSelected);
+  --colorBorderSelectedHover: var(--colorSelectedHover);
+  --colorUpperElement: var(--colorPrimary);
+  --colorUpperElementDisabled: var(--colorDisabled);
+  --colorUpperElementHover: var(--colorPrimaryHover);
+  --colorUpperElementSelected: var(--colorSelected);
+  --colorUpperElementSelectedHover: var(--colorSelectedHover);
+
+  --colorWhiteText: #ffffff;
+  --colorYellowText: #ffff66;
+  --colorPrimaryText: var(--colorPrimary);
+  --colorPrimaryTextHover: var(--colorPrimaryHover);
+  --colorSelectedText: var(--colorSelected);
+  --colorSelectedTextHover: var(--colorSelectedHover);
+  --colorProductItemText: #666666;
+  --colorProductItemTitle: #000000;
+  --colorProductItemSubTitle: #000000;
+
+  --colorBgWhite: #f2f2f2;
+}
+
+body {
+  align-items: center;
+  background: url(./img/Pattern.jpg);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Trebuchet MS', 'Source Sans Pro', sans-serif;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+h1 {
+  color: var(--colorWhiteText);
+  font-family: 'Exo2.0-Thin', sans-serif;
+  font-weight: 300;
+  font-size: 36pt;
+}
+
+.container {
+  margin: 2vmin auto;
+  text-align: center;
+  min-width: 320px;
+}
+
+.products {
+  align-items: center;
+  /*background: yellowgreen;*/
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  min-height: 40vh;
+  width: 100%;
+}
+
+.products-item {
+  margin-bottom: 5vmax;
+}
+.products-item:not(:last-of-type) {
+  margin-right: 2vmax;
+}
+
+.productCard.disabled .productCard-inner {
+  cursor: auto;
+}
+.productCard.disabled .productCard-bottomText {
+  color: var(--colorYellowText);
+}
+.productCard.disabled .productCard-inner {
+  border: var(--colorBorderDisabled) solid 4px;
+}
+.productCard.disabled .productCard-inner:before {
+  border-top: var(--notchSize) var(--colorBorderDisabled) solid;
+}
+.productCard.disabled .productCard-inner:after{
+  background: var(--colorBgWhite);
+  bottom: 0;
+  content: '';
+  clip-path: polygon( 0% var(--notchSize), var(--notchSize) 0%, 100% 0, 100% 100%, 100% 100%, 0 100%);
+  filter: opacity(50%);
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.productCard.disabled .productCard-amount {
+  background: var(--colorDisabled);
+}
+.productCard.disabled:hover .productCard-inner {
+  border: var(--colorBorderDisabled) solid 4px;
+}
+.productCard.disabled:hover .productCard-inner:before {
+  border-top: var(--notchSize) var(--colorBorderDisabled) solid;
+}
+.productCard.disabled:hover .productCard-amount {
+  background: var(--colorDisabled);
+}
+
+.productCard-inner {
+  /* переменная задаёт размер обрезки */
+  --notchSize: 45px;
+
+  background: var(--colorBgWhite) url(./img/kote.png) no-repeat bottom -60% left;
+  background-size: contain;
+  border: var(--colorBorder) solid 4px;
+  border-radius: 10px;
+  color: var(--colorProductItemText);
+
+  /* через пробел координаты x y очередной точки фигуры, через запятую следующая точка, всё что внутри точек будет отображаться, всё что окажется за пределами фигуры обрежет */
+  clip-path: polygon( 0% var(--notchSize), var(--notchSize) 0%, 100% 0, 100% 100%, 100% 100%, 0 100%);
+
+  cursor: pointer;
+  min-height: 510px;
+  padding-left: 45px;
+  position: relative;
+  text-align: start;
+  width: 320px;
+}
+
+.productCard-inner:before{
+  border-top: var(--notchSize) var(--colorBorder) solid;
+  border-right: var(--notchSize) transparent solid;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+
+.productCard:hover .productCard-inner {
+  border: var(--colorBorderHover) solid 4px;
+}
+.productCard:hover .productCard-inner:before{
+  border-top: var(--notchSize) var(--colorBorderHover) solid;
+}
+.productCard.productCard--selected .productCard-inner{
+  border: var(--colorBorderSelected) solid 4px;
+}
+.productCard.productCard--selected .productCard-inner:before{
+  border-top: var(--notchSize) var(--colorBorderSelected) solid;
+}
+.productCard.productCard--selected:hover .productCard-inner{
+  border: var(--colorBorderSelectedHover) solid 4px;
+}
+.productCard.productCard--selected:hover .productCard-inner:before{
+  border-top: var(--notchSize) var(--colorBorderSelectedHover) solid;
+}
+
+
+.productCard.productCard--selected:hover .productCard-slogan{
+  color: var(--colorSelectedTextHover);
+}
+
+.productCard-slogan {
+  font-size: 16px;
+}
+
+.productCard-title {
+  color: var(--colorProductItemTitle);
+  font-size: 48px;
+  margin: 1rem 0 0 0;
+}
+
+.productCard-subTitle {
+  color: var(--colorProductItemSubTitle);
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.productCard-text{
+  font-size: 14px;
+  margin: 0;
+}
+
+.productCard-amount {
+  --amountMargin: 10px;
+  --amountSize: 85px;
+
+  align-items: center;
+  background: var(--colorPrimary);
+  border-radius: 50%;
+  bottom: var(--amountMargin);
+  color: var(--colorWhiteText);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-size: 42px;
+  justify-content: center;
+  height: var(--amountSize);
+  position: absolute;
+  right: var(--amountMargin);
+  width: var(--amountSize);
+}
+
+.productCard:hover .productCard-amount {
+  background: var(--colorPrimaryHover);
+}
+
+.productCard.productCard--selected .productCard-amount {
+  background: var(--colorSelected);
+}
+.productCard.productCard--selected:hover .productCard-amount {
+  background: var(--colorSelectedHover);
+}
+
+.productCard-amount .amountUnits {
+  font-size: 21px;
+}
+
+.productCard-bottomText {
+  color: var(--colorWhiteText);
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.productCard .actionCaption {
+  color: var(--colorPrimaryText);
+  cursor: pointer;
+  text-decoration: dashed underline;
+}
+
+.productCard:hover .actionCaption {
+  color: var(--colorPrimaryTextHover);
+}
